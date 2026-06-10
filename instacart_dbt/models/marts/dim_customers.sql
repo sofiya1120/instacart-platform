@@ -28,7 +28,8 @@ select
     avg_reorder_rate,
     lifetime_items,
     case
-        when avg_days_between_orders > 30 then 1
+        when avg_days_between_orders > 10
+          or total_orders <= 2 then 1
         else 0
     end                                             as is_churned,
     case
