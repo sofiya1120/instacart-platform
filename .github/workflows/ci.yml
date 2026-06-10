@@ -1,0 +1,48 @@
+name: dbt CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  dbt-test:
+    name: Run dbt tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dbt
+        run: pip install dbt-postgres==1.7.4
+
+      - name: Write dbt profiles
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << EOF
+          instacart_dbt:
+            target: ci
+            outputs:
+              ci:
+                type: postgres
+                host: ${{ secrets.NEON_HOST }}
+                user: ${{ secrets.NEON_USER }}
+                password: ${{ secrets.NEON_PASSWORD }}
+                port: 5432
+                dbname: neondb
+                schema: staging
+                threads: 2
+                sslmode: require
+          EOF
+
+      - name: Run dbt tests
+        run: |
+          cd instacart_dbt
+          dbt test
