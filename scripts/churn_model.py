@@ -43,10 +43,8 @@ FEATURES = [
     'avg_basket_size',
     'avg_reorder_rate',
     'lifetime_items',
-    'recency_score',
     'frequency_score',
     'monetary_score',
-    'rfm_total',
 ]
 
 X = df[FEATURES]
@@ -62,12 +60,14 @@ X_train, X_test, y_train, y_test = train_test_split(
 candidates = {
     'Logistic Regression': Pipeline([
         ('scaler', StandardScaler()),
-        ('clf',    LogisticRegression(max_iter=500, random_state=42))
+        ('clf',    LogisticRegression(max_iter=500, random_state=42,
+                                      class_weight='balanced'))
     ]),
     'Random Forest': Pipeline([
         ('scaler', StandardScaler()),
         ('clf',    RandomForestClassifier(
-            n_estimators=100, random_state=42, n_jobs=-1
+            n_estimators=100, random_state=42, n_jobs=-1,
+            class_weight='balanced'
         ))
     ]),
     'Gradient Boosting': Pipeline([
