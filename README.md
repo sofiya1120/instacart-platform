@@ -12,29 +12,31 @@ End-to-end data platform built on Instacart's public dataset.
 
 ## 🏗️ Architecture
 
+```
 Kaggle Dataset
-↓
+      ↓
 Python Ingestion (pandas)
-↓
+      ↓
 Neon PostgreSQL
-├── raw.*        (exact source copy)
-├── staging.*    (cleaned + typed)
-├── marts.*      (fact + dimension tables)
-└── analytics.*  (cohort, RFM, funnel, A/B results)
-↓
+      ├── raw.*        (exact source copy)
+      ├── staging.*    (cleaned + typed)
+      ├── marts.*      (fact + dimension tables)
+      └── analytics.*  (cohort, RFM, funnel, A/B results)
+      ↓
 dbt Core (transformations + tests + lineage)
-↓
+      ↓
 Python Analytics Layer
-├── Cohort Retention Analysis
-├── RFM Segmentation
-├── Funnel Analysis
-└── A/B Testing (statsmodels)
-↓
+      ├── Cohort Retention Analysis
+      ├── RFM Segmentation
+      ├── Funnel Analysis
+      └── A/B Testing (statsmodels)
+      ↓
 scikit-learn Churn Prediction Model
-↓
+      ↓
 Apache Airflow (orchestration)
-↓
+      ↓
 Streamlit Dashboard + Tableau Public + Groq NL Query
+```
 
 ---
 
@@ -172,4 +174,5 @@ instacart-platform/
 ---
 
 *Built by Sofiya Mohammed*
+
 *Stack: Python · Neon PostgreSQL · dbt Core · Apache Airflow · scikit-learn · Groq · Streamlit · Tableau Public · GitHub Actions*
