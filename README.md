@@ -134,36 +134,41 @@ streamlit run app.py
 
 ## 📁 Project Structure
 
+```
 instacart-platform/
 ├── data/
-│   ├── raw/               # Kaggle CSV files (gitignored)
-│   └── processed/         # Exported CSVs for Tableau
+│   ├── raw/                    # Kaggle CSV files (gitignored)
+│   └── processed/              # Exported CSVs for Tableau
 ├── notebooks/
 │   └── 01_dataset_exploration.ipynb
 ├── scripts/
-│   ├── ingest.py          # Load CSVs into PostgreSQL
-│   ├── data_quality.py    # Pre-pipeline quality checks
-│   ├── cohort_analysis.py # Cohort retention
-│   ├── rfm_analysis.py    # RFM segmentation
-│   ├── funnel_analysis.py # Funnel analysis
-│   ├── ab_testing.py      # A/B testing
-│   ├── churn_model.py     # Churn prediction ML
-│   └── nl_query.py        # Groq NL query layer
+│   ├── __init__.py
+│   ├── ingest.py               # Load CSVs into PostgreSQL
+│   ├── data_quality.py         # Pre-pipeline quality checks
+│   ├── cohort_analysis.py      # Cohort retention
+│   ├── rfm_analysis.py         # RFM segmentation
+│   ├── funnel_analysis.py      # Funnel analysis
+│   ├── ab_testing.py           # A/B testing
+│   ├── churn_model.py          # Churn prediction ML
+│   ├── nl_query.py             # Groq NL query layer
+│   └── export_for_tableau.py   # Export CSVs for Tableau
 ├── instacart_dbt/
 │   ├── models/
-│   │   ├── staging/       # stg_orders, stg_products, stg_order_products
-│   │   └── marts/         # fct_orders, dim_customers, fct_product_performance
-│   └── macros/            # generate_schema_name.sql
+│   │   ├── staging/            # stg_orders, stg_products, stg_order_products
+│   │   └── marts/              # fct_orders, dim_customers, fct_product_performance
+│   └── macros/                 # generate_schema_name.sql
 ├── airflow/
 │   └── dags/
 │       └── instacart_pipeline.py
 ├── models/
-│   └── churn_model.pkl    # Saved model (gitignored)
-├── app.py                 # Streamlit dashboard
+│   └── churn_model.pkl         # Saved model (gitignored)
+├── app.py                      # Streamlit dashboard
 ├── requirements.txt
+├── .env.example
 └── .github/
-└── workflows/
-└── ci.yml         # GitHub Actions dbt CI
+    └── workflows/
+        └── ci.yml              # GitHub Actions dbt CI
+```
 ---
 
 *Built by Sofiya Mohammed*
