@@ -1,9 +1,11 @@
 pandas
 numpy
-jupyter
-matplotlib
-seaborn
-scikit-learn
 sqlalchemy
 psycopg2-binary
 python-dotenv
+streamlit
+plotly
+scikit-learn
+statsmodels
+scipy
+groq
